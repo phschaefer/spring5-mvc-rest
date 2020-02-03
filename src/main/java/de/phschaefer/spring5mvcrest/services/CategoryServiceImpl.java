@@ -3,10 +3,12 @@ package de.phschaefer.spring5mvcrest.services;
 import de.phschaefer.spring5mvcrest.api.v1.mapper.CategoryMapper;
 import de.phschaefer.spring5mvcrest.api.v1.model.CategoryDTO;
 import de.phschaefer.spring5mvcrest.repositories.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;
@@ -19,8 +21,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDTO> getAllCategories() {
-        return categoryRepository
-                .findAll()
+
+        return categoryRepository.findAll()
                 .stream()
                 .map(categoryMapper::categoryToCategoryDTO)
                 .collect(Collectors.toList());
